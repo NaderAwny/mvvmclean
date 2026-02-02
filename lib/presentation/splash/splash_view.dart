@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:mvvmclean/presentation/resources/assets_manger.dart';
 import 'package:mvvmclean/presentation/resources/color_manger.dart';
 import 'package:mvvmclean/presentation/resources/constants_manger.dart';
-import 'package:mvvmclean/presentation/resources/route_manger.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -21,7 +20,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() {
- //   Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+    //   Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
   }
 
   @override
@@ -40,12 +39,7 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManger.primary,
-      body: Center(
-        child:
-        SvgPicture.asset(ImageAssets.logo1),
-        
-        // Image(image: AssetImage(ImageAssets.splashLogo)),
-      ),
+      body: Center(child: Image(image: AssetImage(ImageAssets.splashLogo))),
     );
   }
 }

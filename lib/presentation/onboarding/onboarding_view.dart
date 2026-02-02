@@ -71,22 +71,22 @@ List<SliderObject> getSliderData() {
     SliderObject(
       AppStrings.onBoardingTitle1,
       AppStrings.onBoardingSubTitle1,
-      ImageAssets.logo1,
+      ImageAssets.onboardingLogo1,
     ),
     SliderObject(
       AppStrings.onBoardingTitle2,
       AppStrings.onBoardingSubTitle2,
-      ImageAssets.logo2,
+      ImageAssets.onboardingLogo2,
     ),
     SliderObject(
       AppStrings.onBoardingTitle3,
       AppStrings.onBoardingSubTitle3,
-      ImageAssets.logo3,
+      ImageAssets.onboardingLogo3,
     ),
     SliderObject(
       AppStrings.onBoardingTitle4,
       AppStrings.onBoardingSubTitle4,
-      ImageAssets.logo4,
+      ImageAssets.onboardingLogo4,
     ),
   ];
 }
