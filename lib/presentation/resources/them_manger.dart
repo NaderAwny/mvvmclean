@@ -45,6 +45,7 @@ ThemeData getApplicationTheme() {
           color: ColorManger.white,
           fontSize: FontSize.s17,
         ),
+        foregroundColor: ColorManger.white, // لون النص عندما يكون الزر enabled
         backgroundColor: ColorManger.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSize.s12),
@@ -53,28 +54,51 @@ ThemeData getApplicationTheme() {
     ),
     //text theme
     textTheme: TextTheme(
+      // displayLarge: getSemiboldStyle(
+      //   color: ColorManger.darkGrey,
+      //   fontSize: FontSize.s16,
+      // ),
+
+      // headlineLarge: getSemiboldStyle(
+      //   color: ColorManger.darkGrey,
+      //   fontSize: FontSize.s16,
+      // ),
+
+      // headlineMedium: getRegularStyle(
+      //   color: ColorManger.darkGrey,
+      //   fontSize: FontSize.s14,
+      // ),
+
+      // titleMedium: getMediumStyle(
+      //   color: ColorManger.primary,
+      //   fontSize: FontSize.s16,
+      // ),
+      // bodySmall: getRegularStyle(color: ColorManger.grey),
+
+      // bodyMedium: getRegularStyle(
+      //   color: ColorManger.primary,
+      //   fontSize: FontSize.s16,
+      // ), // TextField input text style
+
+      // bodyLarge: getRegularStyle(color: ColorManger.grey1), //caption
       displayLarge: getSemiboldStyle(
         color: ColorManger.darkGrey,
         fontSize: FontSize.s16,
       ),
-
       headlineLarge: getSemiboldStyle(
         color: ColorManger.darkGrey,
         fontSize: FontSize.s16,
       ),
-
       headlineMedium: getRegularStyle(
         color: ColorManger.darkGrey,
         fontSize: FontSize.s14,
       ),
-
       titleMedium: getMediumStyle(
-        color: ColorManger.lightGrey,
-        fontSize: FontSize.s14,
+        color: ColorManger.primary,
+        fontSize: FontSize.s16,
       ),
+      bodyLarge: getRegularStyle(color: ColorManger.grey1),
       bodySmall: getRegularStyle(color: ColorManger.grey),
-
-      bodyLarge: getRegularStyle(color: ColorManger.grey1), //caption
     ),
 
     // input decoration theme (text form field)
@@ -87,31 +111,32 @@ ThemeData getApplicationTheme() {
         fontSize: FontSize.s14,
       ),
       //label Style
-      labelStyle: getMediumStyle(
+      labelStyle: getRegularStyle(
         color: ColorManger.grey,
-        fontSize: FontSize.s14,
+        fontSize: FontSize.s16,
       ),
+
       //error Style
       errorStyle: getRegularStyle(color: ColorManger.error),
       //enable border
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManger.grey, width: AppSize.s1_5),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderSide: BorderSide(color: ColorManger.lightGrey, width: AppSize.s1),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
       ),
       //focused border
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManger.primary, width: AppSize.s1_5),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderSide: BorderSide(color: ColorManger.primary, width: AppSize.s1),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
       ),
       //error border
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManger.error, width: AppSize.s1_5),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderSide: BorderSide(color: ColorManger.error, width: AppSize.s1),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
       ),
       //focused error border
       focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManger.primary, width: AppSize.s1_5),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderSide: BorderSide(color: ColorManger.primary, width: AppSize.s1),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s16)),
       ),
     ),
   );
