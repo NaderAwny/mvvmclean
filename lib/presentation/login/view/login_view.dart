@@ -43,6 +43,7 @@ class _LoginViewState extends State<LoginView> {
       backgroundColor: ColorManger.white,
       body: StreamBuilder<FlowState>(
         stream: _viewModel.outputState,
+
         // builder: (context, snapshot) {
         //   return snapshot.data?.getScreenWidget(
         //         context,
@@ -51,27 +52,16 @@ class _LoginViewState extends State<LoginView> {
         //       ) ??
         //       _getContentWidget();
         // },
-
-builder: (context, snapshot) {
-
-  final state = snapshot.data;
-
-  if (state is LoadingState ||
-      state is ErrorState) {
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      state?.getScreenWidget(
-        context,
-        _getContentWidget(),
-        () => _viewModel.login(),
-      );
-    });
-  }
-
-  return _getContentWidget();
-}
-
-
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(
+                context,
+                _getContentWidget(),
+                () {
+                  // _viewModel.login();
+                },
+              ) ??
+              _getContentWidget();
+        },
       ),
     );
   }

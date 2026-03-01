@@ -13,6 +13,7 @@ abstract class FlowState {
 class LoadingState implements FlowState {
   final StateRendererType stateRendererType;
   String? message;
+  bool isShown = false;
   LoadingState({
     required this.stateRendererType,
     this.message = AppStrings.loading,
@@ -28,6 +29,7 @@ class LoadingState implements FlowState {
 class ErrorState extends FlowState {
   final StateRendererType stateRendererType;
   final String message;
+  bool isShown = false;
   ErrorState(this.stateRendererType, this.message);
   @override
   String getMessage() => message;
@@ -69,9 +71,14 @@ extension FlowStateExtension on FlowState {
     switch (runtimeType) {
       case LoadingState:
         {
+          var loadingState = this as LoadingState;
           if (getStateRendererType() == StateRendererType.popupLoadingState) {
             //popup loading state
-            showPopup(context, getStateRendererType(), getMessage());
+            if (!loadingState.isShown) {
+              dismissDialog(context);
+              showPopup(context, getStateRendererType(), getMessage());
+              loadingState.isShown = true;
+            }
 
             //content screen state
             return contentWidget;
@@ -86,14 +93,19 @@ extension FlowStateExtension on FlowState {
       //error state
       case ErrorState:
         {
-          dismissDialog(context);
+          var errorState = this as ErrorState;
           if (getStateRendererType() == StateRendererType.popupErrorStatete) {
             //popup loading state
-            showPopup(context, getStateRendererType(), getMessage());
+            if (!errorState.isShown) {
+              dismissDialog(context);
+              showPopup(context, getStateRendererType(), getMessage());
+              errorState.isShown = true;
+            }
 
             //content screen state
             return contentWidget;
           } else {
+            dismissDialog(context);
             return StateRandrer(
               stateRendererType: getStateRendererType(),
               message: getMessage(),

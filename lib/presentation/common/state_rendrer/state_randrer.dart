@@ -147,11 +147,10 @@ class StateRandrer extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               if (stateRendererType == StateRendererType.fullScreenErrorState) {
-               retryAction.call();
+                retryAction.call();
               } else {
                 //popup error state
-       Navigator.of(context).pop();
-       
+                Navigator.of(context).pop();
               }
             },
 
