@@ -17,6 +17,9 @@ class LoginViewModel extends BaseViewModel
   final StreamController _areAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
+  final StreamController isUserLoggedInSuccessfullyStreamController =
+      StreamController<bool>();
+
   var loginObject = LoginObject('', '');
   final LoginUsecase _loginUsecase;
   LoginViewModel(this._loginUsecase);
@@ -28,6 +31,7 @@ class LoginViewModel extends BaseViewModel
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areAllInputsValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
@@ -66,6 +70,7 @@ class LoginViewModel extends BaseViewModel
     inputState.add(
       LoadingState(stateRendererType: StateRendererType.popupLoadingState),
     );
+
     (await _loginUsecase.execute(
       LoginUsecaseInput(loginObject.userName, loginObject.password),
     )).fold(
@@ -82,6 +87,8 @@ class LoginViewModel extends BaseViewModel
         // ignore: avoid_print
         // print(data.customer?.name),
         inputState.add(ContentState()),
+        // navigate to main screen
+        isUserLoggedInSuccessfullyStreamController.add(true),
       },
     );
   }

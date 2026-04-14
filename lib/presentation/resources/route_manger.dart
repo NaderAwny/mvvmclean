@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvmclean/app/di.dart';
-import 'package:mvvmclean/presentation/forgot_password/forgotpassword_view.dart';
+import 'package:mvvmclean/presentation/forgot_password/view/forgotpassword_view.dart';
 import 'package:mvvmclean/presentation/login/view/login_view.dart';
-import 'package:mvvmclean/presentation/main/main_view.dart';
+import 'package:mvvmclean/presentation/home/main_view.dart';
 import 'package:mvvmclean/presentation/onboarding/view/onboarding_view.dart';
-import 'package:mvvmclean/presentation/register/register_view.dart';
+import 'package:mvvmclean/presentation/register/view/register_view.dart';
 import 'package:mvvmclean/presentation/resources/strings_manger.dart';
 import 'package:mvvmclean/presentation/splash/splash_view.dart';
-import 'package:mvvmclean/presentation/store_details/store_details_view.dart';
+import 'package:mvvmclean/presentation/store_details/view/store_details_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -31,14 +32,19 @@ class RouteGenerator {
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
+        initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgotPasswordRoute:
+        initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotpasswordView());
 
       case Routes.mainRoute:
+        initHomeModule();
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetalisRoute:
-        return MaterialPageRoute(builder: (_) => const StoredetailsView());
+        final int id = settings.arguments as int;
+        initStoreDetailsModule();
+        return MaterialPageRoute(builder: (_) => StoredetailsView(storeId: id));
       default:
         return unDefinedRoute();
     }
@@ -48,11 +54,11 @@ class RouteGenerator {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         appBar: AppBar(
-          title: const Text(AppStrings.noRouteFound),
+          title: const Text(AppStrings.noRouteFound).tr(),
         ), //todo move this to Strings manager
 
-        body: const Center(
-          child: Text(AppStrings.noRouteFound),
+        body: Center(
+          child: Text(AppStrings.noRouteFound).tr(),
         ), //todo move this to Strings manager
       ),
     );
