@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mvvmclean/app/app_prefs.dart';
+import 'package:mvvmclean/app/di.dart';
 import 'package:mvvmclean/domain/model/models.dart';
 import 'package:mvvmclean/presentation/onboarding/view_model/onboardingg_viewmodel.dart';
 import 'package:mvvmclean/presentation/resources/assets_manger.dart';
@@ -21,9 +24,11 @@ class _OnboardingViewState extends State<OnboardingView> {
   // second step
   final PageController _pageController = PageController();
   final OnBoardingViewModel viewModel = OnBoardingViewModel();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   // ignore: strict_top_level_inference
   _bind() {
+    _appPreferences.setOnBoardingScreenViewed();
     viewModel.start();
   }
 
@@ -182,7 +187,7 @@ class OnBoardingPage extends StatelessWidget {
             sliderObject.title,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displayLarge,
-          ),
+          ).tr(),
         ),
         Padding(
           padding: const EdgeInsets.all(AppPadding.p8),
@@ -190,7 +195,7 @@ class OnBoardingPage extends StatelessWidget {
             sliderObject.subTitle,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          ).tr(),
         ),
 
         SizedBox(height: AppSize.s60),
@@ -199,7 +204,8 @@ class OnBoardingPage extends StatelessWidget {
           child: Center(
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.33,
-              child: SvgPicture.asset(sliderObject.image, fit: BoxFit.contain)),
+              child: SvgPicture.asset(sliderObject.image, fit: BoxFit.contain),
+            ),
           ),
         ),
 
@@ -217,7 +223,7 @@ class OnBoardingPage extends StatelessWidget {
                 textAlign: TextAlign.end,
 
                 style: Theme.of(context).textTheme.titleMedium,
-              ),
+              ).tr(),
             ),
           ),
         ),

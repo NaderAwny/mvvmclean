@@ -1,14 +1,24 @@
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mvvmclean/app/app_prefs.dart';
+import 'package:mvvmclean/data/data_source/local_data_source.dart';
 import 'package:mvvmclean/data/data_source/remote_data_source.dart';
 import 'package:mvvmclean/data/network/app_api.dart';
 import 'package:mvvmclean/data/network/dio_factory.dart';
 import 'package:mvvmclean/data/network/network_info.dart';
 import 'package:mvvmclean/data/repository/repository..impl.dart';
 import 'package:mvvmclean/domain/repository/repository.dart';
+import 'package:mvvmclean/domain/usecase/forget_password_usecase.dart';
+import 'package:mvvmclean/domain/usecase/home-details.dart';
+import 'package:mvvmclean/domain/usecase/home_usecase.dart';
 import 'package:mvvmclean/domain/usecase/login_usecase.dart';
+import 'package:mvvmclean/domain/usecase/register_usecse.dart';
+import 'package:mvvmclean/presentation/forgot_password/viewmodel/forgetpassword.dart';
+import 'package:mvvmclean/presentation/home/pages/home_page/view_model/home_viewmodel.dart';
 import 'package:mvvmclean/presentation/login/viewmodel/login_viewmodel.dart';
+import 'package:mvvmclean/presentation/register/viewmodel/register_viewmodel.dart';
+import 'package:mvvmclean/presentation/store_details/viewmodel/store_details_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final instance = GetIt.instance;
@@ -58,9 +68,15 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(instance<AppServiceClient>()),
   );
+  //local data source
+  instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
   // repository
   instance.registerLazySingleton<Repository>(
-    () => RepositoryImpl(instance<RemoteDataSource>(), instance<NetworkInfo>()),
+    () => RepositoryImpl(
+      instance<RemoteDataSource>(),
+      instance<LocalDataSource>(),
+      instance<NetworkInfo>(),
+    ),
   );
 }
 
@@ -69,5 +85,50 @@ initLoginModule() {
   if (!instance.isRegistered<LoginUsecase>()) {
     instance.registerFactory<LoginUsecase>(() => LoginUsecase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+// ignore: strict_top_level_inference
+initForgotPasswordModule() {
+  if (!instance.isRegistered<ForgetPasswordUsecase>()) {
+    instance.registerFactory<ForgetPasswordUsecase>(
+      () => ForgetPasswordUsecase(instance()),
+    );
+    instance.registerFactory<ForgetPasswordViewModel>(
+      () => ForgetPasswordViewModel(instance()),
+    );
+  }
+}
+
+// ignore: strict_top_level_inference
+initRegisterModule() {
+  if (!instance.isRegistered<RegisterUsecase>()) {
+    instance.registerFactory<RegisterUsecase>(
+      () => RegisterUsecase(instance()),
+    );
+    instance.registerFactory<RegisterViewModel>(
+      () => RegisterViewModel(instance()),
+    );
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
+  }
+}
+
+// ignore: strict_top_level_inference
+initHomeModule() {
+  if (!instance.isRegistered<HomeUsecase>()) {
+    instance.registerFactory<HomeUsecase>(() => HomeUsecase(instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
+  }
+}
+
+// ignore: strict_top_level_inference
+initStoreDetailsModule() {
+  if (!instance.isRegistered<HomeDetailsUseCase>()) {
+    instance.registerFactory<HomeDetailsUseCase>(
+      () => HomeDetailsUseCase(instance()),
+    );
+    instance.registerFactory<StoreDetailsViewModel>(
+      () => StoreDetailsViewModel(instance()),
+    );
   }
 }

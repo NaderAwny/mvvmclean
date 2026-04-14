@@ -1,7 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mvvmclean/data/network/failure.dart';
+import 'package:mvvmclean/presentation/resources/strings_manger.dart';
 
 class ErrorHandler implements Exception {
   late Failure failure;
@@ -128,36 +130,44 @@ class ResponseCode {
 }
 
 class ResponseMessage {
-  static const String SUCCESS = "success"; // success with data
-  static const String NO_CONTENT =
-      "success"; // success with no data (no content)
-  static const String BAD_REQUEST =
-      "Bad request, Try again later"; // failure, API rejected request
-  static const String UNAUTORISED =
-      "User is unauthorised, Try again later"; // failure, user is not authorised
-  static const String FORBIDDEN =
-      "Forbidden request, Try again later"; //  failure, API rejected request; //  failure, API rejected request
-  static const String INTERNAL_SERVER_ERROR =
-      "Some thing went wrong, Try again later"; // failure, crash in server side
-  static const String NOT_FOUND = "User Not Found";
+  // ignore: non_constant_identifier_names
+  static String SUCCESS = AppStrings.success.tr(); // success with data
+  // ignore: non_constant_identifier_names
+  static String NO_CONTENT = AppStrings.noContent
+      .tr(); // success with no data (no content)
+  // ignore: non_constant_identifier_names
+  static String BAD_REQUEST = AppStrings.badRequestError
+      .tr(); // failure, API rejected request
+  // ignore: non_constant_identifier_names
+  static String UNAUTORISED = AppStrings.unauthorizedError
+      .tr(); // failure, user is not authorised
+  // ignore: non_constant_identifier_names
+  static String FORBIDDEN = AppStrings.forbiddenError
+      .tr(); //  failure, API rejected request; //  failure, API rejected request
+  // ignore: non_constant_identifier_names
+  static String INTERNAL_SERVER_ERROR = AppStrings.internalServerError
+      .tr(); // failure, crash in server side
+  // ignore: non_constant_identifier_names
+  static String NOT_FOUND = AppStrings.notFoundError.tr();
   // local status code
-  static const String CONNECT_TIMEOUT = "Time out error, Try again later";
-  static const String CANCEL = "Request was cancelled, Try again later";
-  static const String RECIEVE_TIMEOUT = "Time out error, Try again later";
-  static const String SEND_TIMEOUT = "Time out error, Try again later";
-  static const String CACHE_ERROR = "Cache error, Try again later";
-  static const String NO_INTERNET_CONNECTION =
-      "Please check your internet connection";
-  static const String DEAFULT = "Some thing went wrong, Try again later";
+  // ignore: non_constant_identifier_names
+  static String CONNECT_TIMEOUT = AppStrings.timeoutError.tr();
+  // ignore: non_constant_identifier_names
+  static String CANCEL = AppStrings.defaultError.tr();
+  // ignore: non_constant_identifier_names
+  // ignore: non_constant_identifier_names
+  static String RECIEVE_TIMEOUT = AppStrings.timeoutError.tr();
+  // ignore: non_constant_identifier_names
+  static String SEND_TIMEOUT = AppStrings.timeoutError.tr();
+  // ignore: non_constant_identifier_names
+  static String CACHE_ERROR = AppStrings.cacheError.tr();
+  // ignore: non_constant_identifier_names
+  static String NO_INTERNET_CONNECTION = AppStrings.noInternetError.tr();
+  // ignore: non_constant_identifier_names
+  static String DEAFULT = AppStrings.defaultError.tr();
 }
+
 class ApiInternalStatus {
   static const int SUCCESS = 0;
   static const int FAILURE = 1;
 }
-
-
-
-
-
-
-

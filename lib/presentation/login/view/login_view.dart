@@ -1,5 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mvvmclean/app/app_prefs.dart';
 import 'package:mvvmclean/app/di.dart';
+// ignore: library_prefixes
+import 'package:flutter/scheduler.dart';
 import 'package:mvvmclean/presentation/common/state_rendrer/state_randrer_impl.dart';
 import 'package:mvvmclean/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:mvvmclean/presentation/resources/assets_manger.dart';
@@ -17,6 +21,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey _formKey = GlobalKey<FormState>();
@@ -29,6 +34,16 @@ class _LoginViewState extends State<LoginView> {
     _passwordController.addListener(
       () => _viewModel.setPassword(_passwordController.text),
     );
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((
+      isLoggedIn,
+    ) {
+      if (isLoggedIn) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          _appPreferences.setLoggedInStatus();
+          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        });
+      }
+    });
   }
 
   @override
@@ -42,36 +57,28 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       backgroundColor: ColorManger.white,
       body: StreamBuilder<FlowState>(
+        //outputState is straem from basedviewmodel view th content state
         stream: _viewModel.outputState,
+
         // builder: (context, snapshot) {
         //   return snapshot.data?.getScreenWidget(
         //         context,
         //         _getContentWidget(),
-        //         () => _viewModel.login(),
+        //         () {
+        //           _viewModel.login();
+        //         },
         //       ) ??
         //       _getContentWidget();
-        // },
-
-builder: (context, snapshot) {
-
-  final state = snapshot.data;
-
-  if (state is LoadingState ||
-      state is ErrorState) {
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      state?.getScreenWidget(
-        context,
-        _getContentWidget(),
-        () => _viewModel.login(),
-      );
-    });
-  }
-
-  return _getContentWidget();
-}
-
-
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(
+                context,
+                _getContentWidget(),
+                () {
+                  _viewModel.login();
+                },
+              ) ??
+              _getContentWidget();
+        },
       ),
     );
   }
@@ -101,11 +108,11 @@ builder: (context, snapshot) {
                       controller: _userNameController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        hintText: AppStrings.userName,
-                        labelText: AppStrings.userName,
+                        hintText: AppStrings.email.tr(),
+                        labelText: AppStrings.email.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppStrings.usernameError,
+                            : AppStrings.invalidEmail.tr(),
                       ),
                     );
                   },
@@ -125,11 +132,11 @@ builder: (context, snapshot) {
                       controller: _passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                        hintText: AppStrings.password,
-                        labelText: AppStrings.password,
+                        hintText: AppStrings.password.tr(),
+                        labelText: AppStrings.password.tr(),
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppStrings.passwordError,
+                            : AppStrings.passwordError.tr(),
                       ),
                     );
                   },
@@ -151,7 +158,7 @@ builder: (context, snapshot) {
                         onPressed: (snapshot.data ?? false)
                             ? () => _viewModel.login()
                             : null,
-                        child: const Text(AppStrings.login),
+                        child: Text(AppStrings.login.tr()),
                       ),
                     );
                   },
@@ -188,7 +195,7 @@ builder: (context, snapshot) {
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
-                        ),
+                        ).tr(),
                       ),
                     ),
                     const SizedBox(width: AppSize.s8),
@@ -203,7 +210,7 @@ builder: (context, snapshot) {
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
-                        ),
+                        ).tr(),
                       ),
                     ),
                   ],

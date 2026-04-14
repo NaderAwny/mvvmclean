@@ -55,12 +55,16 @@
   "invite_your_friends": "قم بدعوة أصدقائك",
   "logout": "تسجيل الخروج",
   "reset_password": "اعاده تعيين كلمه السر",
-  "username_error": "الرجاء إدخال اسم المستخدم الخاص بك" ,
-  "password_error": "الرجاء إدخال كلمة المرور" ,
-  "email_error": "تنسيق البريد الإلكتروني خاطئ" ,
+  "username_error": "الرجاء إدخال اسم المستخدم الخاص بك",
+  "password_error": "الرجاء إدخال كلمة المرور",
+  "email_error": "تنسيق البريد الإلكتروني خاطئ",
   "username_hint_message": "يجب ألا يقل اسم المستخدم عن 8 أحرف",
   "mobile_number_hint_message": "يجب ألا يقل رقم الجوال عن 10 أرقام",
-  "password_hint_message": "يجب أن تكون كلمة المرور 6 أحرف على الأقل" ,
+  "password_hint_message": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
   "photo_from_galley": "صورة من الجاليري",
-  "photo_from_camera": "صورة من الكاميرا"
+  "photo_from_camera": "صورة من الكاميرا",
+  "reset_password_subtitle": "الرجاء إدخال البريد الإلكتروني المسجل",
+  "resend_email": "لم تستلم البريد الإلكتروني؟ ",
+  "resend_email_subtitle": "أعد الإرسال ",
+  "reset_password_successfully": "تم إعادة تعيين كلمة المرور بنجاح"
 }

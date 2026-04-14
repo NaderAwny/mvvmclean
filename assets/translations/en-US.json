@@ -63,5 +63,9 @@
   "mobile_number_hint_message": "Mobile should be at least 10 digits",
   "password_hint_message": "Password should be at least 6 chars",
   "photo_from_galley": "Photo from galley",
-  "photo_from_camera": "Photo from camera"
+  "photo_from_camera": "Photo from camera",
+  "reset_password_subtitle": "Reset Password subtitle",
+  "resend_email": "Didn’t recieve email ? ",
+  "resend_email_subtitle": "Resend ",
+  "reset_password_successfully": "Reset Password Successfully"
 }

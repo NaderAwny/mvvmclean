@@ -1,27 +1,67 @@
 class AppStrings {
-  static const noRouteFound = "No Route Found";
-  static const onBoardingTitle1 = "SEE THE BEST COURSE #1";
-  static const onBoardingTitle2 = "SEE THE BEST COURSE #2";
-  static const onBoardingTitle3 = "SEE THE BEST COURSE #3";
-  static const onBoardingTitle4 = "SEE THE BEST COURSE #4";
-  static const onBoardingSubTitle1 =
-      "Tut app is an awesome flutter application using clean architecture #1";
-  static const onBoardingSubTitle2 =
-      "Tut app is an awesome flutter application using clean architecture #2";
-  static const onBoardingSubTitle3 =
-      "Tut app is an awesome flutter application using clean architecture #3";
-  static const onBoardingSubTitle4 =
-      "Tut app is an awesome flutter application using clean architecture #4";
-  static const skip = "Skip";
-
-  static const usernameError = "Please enter your userName";
-  static const passwordError = "Please enter your password";
-  static const userName = "User Name";
-  static const password = "Password";
-  static const login = "Login";
-  static const ForgetPassword = "Forget Password";
-  static const registerText = "Not a member ? Sign up";
-  static const loading = "Loading...";
-  static const tryAgain = "Try Again";
-  static const ok = "Ok";
+  static const noRouteFound = "noRouteFound";
+  static const onBoardingTitle1 = "on_boarding_title1";
+  static const onBoardingTitle2 = "on_boarding_title2";
+  static const onBoardingTitle3 = "on_boarding_title3";
+  static const onBoardingTitle4 = "on_boarding_title4";
+  static const onBoardingSubTitle1 = "on_boarding_desc1";
+  static const onBoardingSubTitle2 = "on_boarding_desc2";
+  static const onBoardingSubTitle3 = "on_boarding_desc3";
+  static const onBoardingSubTitle4 = "on_boarding_desc4";
+  static const skip = "skip";
+  static const usernameError = "username_error";
+  static const passwordError = "password_error";
+  static const userName = "username_hint";
+  static const password = "password_hint";
+  static const login = "login_button";
+  static const register = "register";
+  static const ForgetPassword = "forgot_password_text";
+  static const registerText = "register_text";
+  static const loading = "loading";
+  static const mobileNumber = "mobile_number_hint";
+  static const email = "email_hint";
+  static const tryAgain = "retry_again";
+  static const ok = "ok";
+  static const success = "success";
+  static const alreadyHaveAccount = "already_have_account";
+  static const resetPassword = "reset_password";
+  static const resetPasswordSubtitle = "reset_password_subtitle";
+  static const resendEmail = "resend_email";
+  static const resendEmailSubtitle = "resend_email_subtitle";
+  static const resetPasswordSuccessfully = "reset_password_successfully";
+  static const invalidEmail = "email_error";
+  static const String userNameInvalid = "username_hint_message";
+  static const String mobileNumberInvalid = "mobile_number_hint_message";
+  static const String passwordInvalid = "password_hint_message";
+  static const String profilePicture = "upload_profile_pictur";
+  static const photoGallery = "photo_gallery";
+  static const photoCamera = "camera";
+  static const home = "home";
+  static const search = "search";
+  static const notifications = "notification";
+  static const settings = "settings";
+  static const services = "services";
+  static const stores = "stores";
+  static const details = "details";
+  static const about = "about";
+  static const storeDetails = "store_details";
+  static const String ChangeLanguage = "change_language";
+  static const String logout = "logout";
+  static const String contactUs = "contact_us";
+  static const String inviteFriends = "invite_your_friends";
+  static const String URL = "https://github.com/NaderAwny";
+  static const String appName = "Iwant to open App Tut App";
+  // error handler
+  static const String badRequestError = "bad_request_error";
+  static const String noContent = "no_content";
+  static const String forbiddenError = "forbidden_error";
+  static const String unauthorizedError = "unauthorized_error";
+  static const String notFoundError = "not_found_error";
+  static const String conflictError = "conflict_error";
+  static const String internalServerError = "internal_server_error";
+  static const String unknownError = "unknown_error";
+  static const String timeoutError = "timeout_error";
+  static const String defaultError = "default_error";
+  static const String cacheError = "cache_error";
+  static const String noInternetError = "no_internet_error";
 }
